@@ -10,7 +10,47 @@
 
 var allMembers = data.results[0].members; //make new object (where multiple value is stored) you can use in your equation!
 
-console.log(allMembers) //log to console to see if its there
+var republican = document.getElementById("inlineCheckbox1");
+republican.addEventListener("click", function () {
+        filterParty();
+    });
+
+    var republican = document.getElementById("inlineCheckbox2"); republican.addEventListener("click", function () {
+            filterParty();
+        });
+
+        var republican = document.getElementById("inlineCheckbox3"); republican.addEventListener("click", function () {
+                filterParty();
+            });
+
+            console.log(filteredArray)
+
+
+            filterParty()
+
+            function filterParty() { //create filter
+                var filteredArray = []; //?????????????
+
+                for (var i = 0; i < allMembers.length; i++) {
+                    if (allMembers[i].party == "R" && republican.checked == true) {
+                        filteredArray.push(allMembers[i]);
+                    }
+
+            }
+            if (allMembers[i].party == "D" && republican.checked == true) {
+                filteredArray.push(allMembers[i]);
+            }
+
+    }
+    if (allMembers[i].party == "I" && republican.checked == true) {
+        filteredArray.push(allMembers[i]);
+    }
+
+
+
+document.getElementById("senate-data").innerHTML = (filteredArray);
+
+
 
 buildTable()
 
@@ -30,9 +70,9 @@ function buildTable() {
         } // create statement to avoiding nulls before!!! the creation of the textnode => see next line.
         var tdName = document.createElement('td');
         tdName.innerHTML = name;
-        
-//        var textnodeName = document.createTextNode(name); // Create a text node
-//        tdName.appendChild(textnodeName);
+
+        //        var textnodeName = document.createTextNode(name); // Create a text node
+        //        tdName.appendChild(textnodeName);
         tr.appendChild(tdName);
         // Append/attach the text to <tr>
         // Append/attach table-row to the tablebody
@@ -71,6 +111,6 @@ function buildTable() {
 function addLink() {
 
 
-//    var x = document.getElementById("myLink").href; // 
-//    document.getElementById("link").innerHTML = x;
+    //    var x = document.getElementById("myLink").href; // 
+    //    document.getElementById("link").innerHTML = x;
 }
