@@ -25,44 +25,15 @@ independent.addEventListener("click", function () {
     filterParty();
 });
 
-//console.log(filteredArray)
+var list = document.getElementById("states-selector"); //dropdown menu list
+list.addEventListener("change", function () {
+    filterParty();
+});
 
 
-//filterParty()
 
 buildTable(allMembers)
 
-function filterParty() { //create filter
-    var filteredArray = []; //?????????????
-
-    for (var i = 0; i < allMembers.length; i++) {
-        if (allMembers[i].party == "R" && republican.checked == true) {
-            filteredArray.push(allMembers[i]);
-        }
-
-
-        if (allMembers[i].party == "D" && democrat.checked == true) {
-            filteredArray.push(allMembers[i]);
-        }
-
-
-        if (allMembers[i].party == "I" && independent.checked == true) {
-            filteredArray.push(allMembers[i]);
-        }
-
-     
-
-    }
-       buildTable(filteredArray)
-}
-
-
-
-//    document.getElementById("senate-data").innerHTML = (filteredArray);
-
-
-
-//buildTable(allMembers)
 
 function buildTable(array) {
     var table = document.getElementById("table"); //Get Table Node from HTML 
@@ -114,10 +85,85 @@ function buildTable(array) {
 
     }
 
-//    console.log(table)
+    //    console.log(table)
     table.appendChild(tblB);
 
 
 }
 
-//addLink();
+
+function filterParty() { //create filter
+    var filteredArray = []; //collect all filtered value in an array
+    var stateSelectorValue = list.value;
+    for (var i = 0; i < allMembers.length; i++) {
+
+        if (stateSelectorValue == allMembers[i].state || stateSelectorValue == 'all') {
+            if (allMembers[i].party == "R" && republican.checked == true ) {
+                filteredArray.push(allMembers[i]);
+            }
+
+
+            if (allMembers[i].party == "D" && democrat.checked == true) {
+                filteredArray.push(allMembers[i]);
+            }
+
+
+            if (allMembers[i].party == "I" && independent.checked == true) {
+                filteredArray.push(allMembers[i]);
+            }
+
+        }
+    }
+    buildTable(filteredArray)
+}
+
+
+removeDuplicates();
+
+function removeDuplicates() {
+    var allStates = [];
+    for (var i = 0; i < allMembers.length; i++) {
+
+        allStates.push(allMembers[i].state)
+        var unique = [...new Set(allStates)];
+
+    }
+    addList(unique.sort());
+}
+
+function addList(arr) {
+    for (var i = 0; i < arr.length; i++) {
+        var option = document.createElement("option"); // Create a <option> node
+        option.setAttribute("value", arr[i])
+        var textnode = document.createTextNode(arr[i]); // Create a text node
+        option.appendChild(textnode); // Append the text to <li>
+        list.appendChild(option)
+
+    }
+}
+//
+//function showSelection() { //create filter
+//    var selection = document.getElementById("myList").value;
+//}
+//addList(showSelection);
+
+
+var filteredArr = []; //collect all filtered value in an array
+
+for (var i = 0; i < allMembers.length; i++) {
+    if (allMembers[i].state == "TN" && list.checked == true) {
+        filteredArray.push(allMembers[i]);
+    }
+
+
+    if (allMembers[i].party == "TH" && list.checked == true) {
+        filteredArray.push(allMembers[i]);
+    }
+
+
+    if (allMembers[i].party == "WI" && list.checked == true) {
+        filteredArray.push(allMembers[i]);
+    }
+}
+addList(filteredArr)
+//}
