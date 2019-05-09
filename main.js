@@ -12,22 +12,22 @@ var allMembers = data.results[0].members; //make new object (where multiple valu
 
 var republican = document.getElementById("inlineCheckbox1");
 republican.addEventListener("click", function () {
-    filterParty();
+    filteren();
 });
 
 var democrat = document.getElementById("inlineCheckbox2");
 democrat.addEventListener("click", function () {
-    filterParty();
+    filteren();
 });
 
 var independent = document.getElementById("inlineCheckbox3");
 independent.addEventListener("click", function () {
-    filterParty();
+    filteren();
 });
 
 var list = document.getElementById("states-selector"); //dropdown menu list
 list.addEventListener("change", function () {
-    filterParty();
+    filteren();
 });
 
 
@@ -37,7 +37,6 @@ buildTable(allMembers)
 
 function buildTable(array) {
     var table = document.getElementById("table"); //Get Table Node from HTML 
-    //    var table = document.createElement("Table"); // Create a table 
     table.innerHTML = "";
 
     var tblB = document.createElement("TBody");
@@ -92,7 +91,7 @@ function buildTable(array) {
 }
 
 
-function filterParty() { //create filter
+function filteren() { //create filter
     var filteredArray = []; //collect all filtered value in an array
     var stateSelectorValue = list.value;
     for (var i = 0; i < allMembers.length; i++) {
@@ -141,11 +140,6 @@ function addList(arr) {
 
     }
 }
-//
-//function showSelection() { //create filter
-//    var selection = document.getElementById("myList").value;
-//}
-//addList(showSelection);
 
 
 var filteredArr = []; //collect all filtered value in an array
@@ -166,4 +160,4 @@ for (var i = 0; i < allMembers.length; i++) {
     }
 }
 addList(filteredArr)
-//}
+

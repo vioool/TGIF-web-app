@@ -13,13 +13,13 @@
 <body>
     <div class="wrapper">
         <header class="header">
-            <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmiJomshqE5fCQU29kPDq9xhUtAvMga3jlWiXtjjXNuRqijeaE6w" alt="logo TGIF">
+            <a class="nav-link active" href="home.html"><img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmiJomshqE5fCQU29kPDq9xhUtAvMga3jlWiXtjjXNuRqijeaE6w" alt="logo TGIF"></a>
             <div class="mail"><a href="mailto:info@tgif.net">
                     <p><span class="glyphicon glyphicon-envelope"></span> info@tgif.net</p>
                 </a>
             </div>
         </header>
-  s
+
         <nav>
             <ul class="nav nav-pills">
                 <li class="nav-item">
@@ -33,31 +33,71 @@
                         <a class="dropdown-item" href="house-data.html">House</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Attendance</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="senate-data.html">Senate</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="house-data.html">House</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Party Loyalty</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="senate-data.html">Senate</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="house-data.html">House</a>
+                    </div>
+                </li>
             </ul>
         </nav>
+
 
         <article class="main">
             <h2>Congressmen</h2>
             <p>The major power of the House is to pass federal legislation that affects the entire country, although its bills must also be passed by the Senate and further agreed to by the U.S. President before becoming law (unless both the House and Senate re-pass the legislation with a two-thirds majority in each chamber). The House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached officials are subsequently tried in the Senate), and to elect the U.S. President in case there is no majority in the Electoral College.</p>
             <p>Each U.S. state is represented in the House in proportion to its population as measured in the census, but every state is entitled to at least one representative. </p>
 
+            <div class="filterbar">
+                <div class="check">
+                    <label class="form-check-label" for="inlineCheckbox1">Filter by Party </label>
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" checked>
+                    <label class="form-check-label" for="inlineCheckbox1"> Republican</label>
+
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" checked>
+                    <label class="form-check-label" for="inlineCheckbox2"> Democrat</label>
+
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" checked>
+                    <label class="form-check-label" for="inlineCheckbox3"> Independent</label>
+                </div>
+
+                <div class="dropdown">
+                    <select id='states-selector'>
+                        <option value="all">--All--</option>
+                    </select>
+                </div>
+            </div>
+
             <pre id="house-data"></pre>
+
             <table class="table table-striped" id="table">
                 <thead>
                     <tr>
-                        <th>Member's name</th>
-                        <th>Party</th>
+                        <th>Congressman</th>
+                        <th>Party Affiliation</th>
                         <th>State</th>
                         <th>Years in Office </th>
-                        <th>% Votes with party</th>
+                        <th>% Votes with Party</th>
                     </tr>
                 </thead>
             </table>
-            <div></div>
+
             <a href="#0" id="link"></a>
         </article>
         <footer class="footer">© 2019 Copyright: All Rights Reserved</footer>
-        <script src="pro-congress-113-house.js"></script>
-        <script src="main.js"></script>
     </div>
-</body></html>
+    <script src="pro-congress-113-house.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
