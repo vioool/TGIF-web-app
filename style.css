@@ -56,6 +56,41 @@ nav {
     border-radius: 4px;
 }
 
+h3 {
+    text-align: center;
+    padding: 18px;
+
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.block1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.block1_left {
+    width: 45%;
+}
+
+.block1_right {
+    width: 45%; 
+}
+
+.block2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.block2_left {
+    width: 45%;
+}
+
+.block2_right {
+    width: 45%; 
+}
+
 .table table-striped {
     padding: 0px, 10px;
 }
@@ -77,7 +112,7 @@ nav {
 }
 
 td {
-    width: 50px;
+    width: 30%;
     height: 50px;
 }
 

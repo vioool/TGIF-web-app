@@ -30,18 +30,20 @@ list.addEventListener("change", function () {
     filteren();
 });
 
+var filteredArr = []; //collect all filtered value in an array
 
 
 buildTable(allMembers)
 
+removeDuplicates()
+
+addList(filteredArr)
+
+
 
 function buildTable(array) {
-    var table = document.getElementById("table"); //Get Table Node from HTML 
-    table.innerHTML = "";
-
-    var tblB = document.createElement("TBody");
-
-    // Create a table body 
+    var tblB = document.getElementById("table");   // Create a table body 
+    tblB.innerHTML = "";
     // Append/attach the tablebody to the table.
     for (var i = 0; i < array.length; i++) { // Loop to create cells and rows&run through the array outside object/doc
 
@@ -84,8 +86,6 @@ function buildTable(array) {
 
     }
 
-    //    console.log(table)
-    table.appendChild(tblB);
 
 
 }
@@ -117,8 +117,6 @@ function filteren() { //create filter
 }
 
 
-removeDuplicates();
-
 function removeDuplicates() {
     var allStates = [];
     for (var i = 0; i < allMembers.length; i++) {
@@ -129,6 +127,7 @@ function removeDuplicates() {
     }
     addList(unique.sort());
 }
+
 
 function addList(arr) {
     for (var i = 0; i < arr.length; i++) {
@@ -141,8 +140,6 @@ function addList(arr) {
     }
 }
 
-
-var filteredArr = []; //collect all filtered value in an array
 
 for (var i = 0; i < allMembers.length; i++) {
     if (allMembers[i].state == "TN" && list.checked == true) {
@@ -159,5 +156,4 @@ for (var i = 0; i < allMembers.length; i++) {
         filteredArray.push(allMembers[i]);
     }
 }
-addList(filteredArr)
 
