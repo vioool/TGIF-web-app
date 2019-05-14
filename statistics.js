@@ -24,12 +24,11 @@
 //}
 
 
+
+
 var table = document.getElementById("table1");
-var tableEngagedMost = document.getElementById("table2");
-var tableEngagedLess = document.getElementById("table3");
-
 var allMembers = data.results[0].members;
-
+//console.log(tableEngagedMost, tableLoyalLess)
 
 var stats = {
     "requests": [
@@ -65,58 +64,64 @@ var mostLoyal = [...allMembers.sort(function (a, b) {
     return b.votes_with_party_pct - a.votes_with_party_pct;
 })]
 var leastEngaged = [...allMembers.sort(function (a, b) {
-    return a.missed_votes - b.missed_votes;
+    return a.missed_votes_pct - b.missed_votes_pct;
 })]
 var mostEngaged = [...allMembers.sort(function (a, b) {
-    return b.missed_votes - a.missed_votes;
+    return b.missed_votes_pct - a.missed_votes_pct;
 })]
 
+var leastEng = getTenPrct(leastEngaged, 'missed_votes_pct');
+var mostEng = getTenPrct(mostEngaged, 'missed_votes_pct');
+var leastLoy = getTenPrct(leastLoyal, 'votes_with_party_pct');
+var mostLoy = getTenPrct(mostLoyal, 'votes_with_party_pct');
 
-var LeastEng = useOneFunction(leastEngaged, 'missed_votes');
-var MostEng = useOneFunction(mostEngaged, 'missed_votes');
+
+if (location.pathname == "/senate%20attendance%20statistics.html" || location.pathname == "/house%20attendance%20statistics.html") {
+    var tableEngagedMost = document.getElementById("table2");
+    var tableEngagedLess = document.getElementById("table3");
+    createTable(tableEngagedMost, mostEng, "missed_votes", "missed_votes_pct")
+    createTable(tableEngagedLess, leastEng, "missed_votes", "missed_votes_pct")
+
+}
+if (location.pathname == "/senate_party-loyalty.html" || location.pathname == "/house_party-loyalty.html") {
+    var tableLoyalMost = document.getElementById("table4");
+    var tableLoyalLess = document.getElementById("table5");
+    createTable(tableLoyalMost, mostLoy, "total_votes", "votes_with_party_pct")
+    createTable(tableLoyalLess, leastLoy, "total_votes", "votes_with_party_pct" )
+
+}
 
 
-//console.log(statistics)
-useOneFunction(leastLoyal, 'votes_with_party_pct') //call your function(use your var here, 'and here the key in your data')
-useOneFunction(mostLoyal, 'votes_with_party_pct') //you can call the same function as often as you want/needed
-
-useOneFunction(leastEngaged, 'missed_votes')
-useOneFunction(mostEngaged, 'missed_votes')
-
- //kan overal in het document staan. Roept de resultaten op van de gelijknamige functie hieronder
+//kan overal in het document staan. Roept de resultaten op van de gelijknamige functie hieronder
 
 
 var dataFromList = returnAllStats(stats, allMembers).requests
 
 
-
-
 generateTable(table, dataFromList);
-createTable(tableEngagedMost, LeastEng)
-createTable(tableEngagedLess, MostEng)
 
 
-
-
-
-
-
-
-function useOneFunction(members, key) { //(members, key can be enything like (x, y))
+function getTenPrct(members, key) { //(members, key can be enything like (x, y))
     var tenPerc = [];
+
     for (var i = 0; i < members.length; i++) {
-//                console.log(members[i])
+        //                console.log(members[i])
         if (i <= (members.length * 0.1)) {
+//            console.log('ten',members[i][key])
             tenPerc.push(members[i])
         } else if (members[i][key] == members[i - 1][key]) {
+//            console.log('extra',members[i][key])
             tenPerc.push(members[i])
         } else {
             break;
         }
     }
-        return tenPerc;
+    return tenPerc;
+ 
 
 }
+
+
 
 function returnAllStats(stats, allMembers) {
 
@@ -163,7 +168,7 @@ function returnAllStats(stats, allMembers) {
     stats.requests[0].party = "Republicans"
     stats.requests[1].party = "Democrates"
     stats.requests[2].party = "Independents"
-    
+
     return stats;
 
 }
@@ -173,7 +178,7 @@ function generateTable(table, dataFromList) { //(table, data can be enything lik
     for (var element of dataFromList) { //loop through data and make a new element with a var
         var row = table.insertRow(); //make new rows and insert it to the table
 
-        for (key in element) { 
+        for (key in element) {
             var cell = row.insertCell(); //make the cells
             var text = document.createTextNode(element[key]); // make new textnode
             cell.appendChild(text); //append cells to the textnode
@@ -184,7 +189,7 @@ function generateTable(table, dataFromList) { //(table, data can be enything lik
 
 }
 
-function createTable (table, array){
+function createTable (table, array, votes, pct){
     
     for(var i = 0; i <array.length; i++){
         var row = document.createElement("tr")
@@ -192,10 +197,10 @@ function createTable (table, array){
         nameCel.innerHTML = array[i].first_name + " " + array[i].last_name;
         
         var votesCel = document.createElement("td");
-        votesCel.innerHTML = array[i].missed_votes;
+        votesCel.innerHTML = array[i][votes];
         
         var pctCel = document.createElement("td");
-        pctCel.innerHTML = array[i].missed_votes_pct.toFixed(2) + " %";
+        pctCel.innerHTML = array[i][pct].toFixed(2) + " %";
         
         
         row.appendChild(nameCel);
@@ -205,5 +210,4 @@ function createTable (table, array){
     }
     
 }
-
 

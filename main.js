@@ -1,12 +1,4 @@
-//var test = 12;
-//
-//document.getElementById("senate-data").innerHTML = JSON.stringify(test, null, 2);
-//
-//var sayHello = "hello";
-//
-//document.getElementById("senate-data").innerHTML = JSON.stringify(sayHello, null, 2);
-//
-//document.getElementById("senate-data").innerHTML = JSON.stringify(data.results[0].members[1].last_name, null, 2); //gives back the last name of the second member of the results of the data object of the document and append to the HTMLdoc
+
 
 var allMembers = data.results[0].members; //make new object (where multiple value is stored) you can use in your equation!
 

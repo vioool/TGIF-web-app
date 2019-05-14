@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>House</title>
+    <title>House Attendance</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -51,51 +51,62 @@
                 </li>
             </ul>
         </nav>
-
-
         <article class="main">
-            <h2>Congressmen</h2>
-            <p>The major power of the House is to pass federal legislation that affects the entire country, although its bills must also be passed by the Senate and further agreed to by the U.S. President before becoming law (unless both the House and Senate re-pass the legislation with a two-thirds majority in each chamber). The House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached officials are subsequently tried in the Senate), and to elect the U.S. President in case there is no majority in the Electoral College.</p>
-            <p>Each U.S. state is represented in the House in proportion to its population as measured in the census, but every state is entitled to at least one representative. </p>
+            <div class="block1">
+                <div class="block1_left">
+                    <h2>Attendance</h2>
+                    <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
 
-            <div class="filterbar">
-                <div class="check">
-                    <label class="form-check-label" for="inlineCheckbox1">Filter by Party </label>
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" checked>
-                    <label class="form-check-label" for="inlineCheckbox1"> Republican</label>
-
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" checked>
-                    <label class="form-check-label" for="inlineCheckbox2"> Democrat</label>
-
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" checked>
-                    <label class="form-check-label" for="inlineCheckbox3"> Independent</label>
+                    <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
                 </div>
-
-                <div class="dropdown">
-                    <select id='states-selector'>
-                        <option value="all">--All--</option>
-                    </select>
+                <div class="block1_right">
+                    <h3>House at a glance</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Party</th>
+                                <th>Number of Reps</th>
+                                <th>% Voted with Prty</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table1"></tbody>
+                    </table>
                 </div>
             </div>
+            <div class="block2">
+                <div class="block2_left">
+                    <h3>Least Engaged (Bottom 10% Attendance)</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Number of Missed Votes</th>
+                                <th>% Missed</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table2"></tbody>
+                    </table>
+                </div>
+                <div class="block2_right">
 
-            <pre id="house-data"></pre>
-
-            <table class="table table-striped" id="table">
-                <thead>
-                    <tr>
-                        <th>Congressman</th>
-                        <th>Party Affiliation</th>
-                        <th>State</th>
-                        <th>Years in Office </th>
-                        <th>% Votes with Party</th>
-                    </tr>
-                </thead>
-            </table>
-
-            <a href="#0" id="link"></a>
+                    <h3>Most Engaged (Top 10% Attendance)</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Number of Missed Votes</th>
+                                <th>% Missed</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table3"></tbody>
+                    </table>
+                </div>
+            </div>
         </article>
         <footer class="footer">© 2019 Copyright: All Rights Reserved</footer>
     </div>
     <script src="pro-congress-113-house.js"></script>
-    <script src="main.js"></script>
-</body></html>
+    <script src="statistics.js"></script>
+</body>
+
+</html>
