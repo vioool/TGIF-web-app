@@ -1,42 +1,91 @@
+getData()
+
+async function getData() {
+
+    var data =
+        await fetch("https://api.propublica.org/congress/v1/113/senate/members.json", {
+            method: 'GET',
+            headers: new Headers({
+                "X-API-Key": 'ynNlsKIHmCeXkYbQsaTMWD3sBKdGZ91Dpj0gh9Z'
+            })
+        })
+        .then(response => response.json())
+        .then(json => json)
+        .catch(err => console.error(err))
 
 
-var allMembers = data.results[0].members; //make new object (where multiple value is stored) you can use in your equation!
 
-var republican = document.getElementById("inlineCheckbox1");
-republican.addEventListener("click", function () {
-    filteren();
-});
+    allMembers = data.results[0].members; //make new object (where multiple value is stored) you can use in your equation!
 
-var democrat = document.getElementById("inlineCheckbox2");
-democrat.addEventListener("click", function () {
-    filteren();
-});
+    republican = document.getElementById("inlineCheckbox1");
+    republican.addEventListener("click", function () {
+        filteren();
+    });
 
-var independent = document.getElementById("inlineCheckbox3");
-independent.addEventListener("click", function () {
-    filteren();
-});
+    democrat = document.getElementById("inlineCheckbox2");
+    democrat.addEventListener("click", function () {
+        filteren();
+    });
 
-var list = document.getElementById("states-selector"); //dropdown menu list
-list.addEventListener("change", function () {
-    filteren();
-});
+    independent = document.getElementById("inlineCheckbox3");
+    independent.addEventListener("click", function () {
+        filteren();
+    });
 
-var filteredArr = []; //collect all filtered value in an array
+    list = document.getElementById("states-selector"); //dropdown menu list
+    list.addEventListener("change", function () {
+        filteren();
+    });
+
+    
+    var filteredArr = []; //collect all filtered value in an array
+    var myVar;
+//
+//    var app = new Vue({
+//        el: '#app',
+//        data: {
+//            senators: []
+//        }
+//    });
+//    
+//    app.senateData = Object.assign(allMembers);
+        
+
+    buildTable(allMembers)
+    removeDuplicates()
+    addList(filteredArr)
+
+    for (var i = 0; i < allMembers.length; i++) {
+        if (allMembers[i].state == "TN" && list.checked == true) {
+            filteredArray.push(allMembers[i]);
+        }
 
 
-buildTable(allMembers)
-
-removeDuplicates()
-
-addList(filteredArr)
+        if (allMembers[i].party == "TH" && list.checked == true) {
+            filteredArray.push(allMembers[i]);
+        }
 
 
+        if (allMembers[i].party == "WI" && list.checked == true) {
+            filteredArray.push(allMembers[i]);
+        }
+    }
+
+}
+
+function myFunction() {
+  myVar = setTimeout(showPage, 2000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
 
 function buildTable(array) {
-    var tblB = document.getElementById("table");   // Create a table body 
+    var tblB = document.getElementById("table"); // Create a table body 
     tblB.innerHTML = "";
-    // Append/attach the tablebody to the table.
+
     for (var i = 0; i < array.length; i++) { // Loop to create cells and rows&run through the array outside object/doc
 
         var tr = document.createElement('tr'); // Create the rows
@@ -45,15 +94,10 @@ function buildTable(array) {
             name = (array[i].last_name + ', ' + array[i].middle_name + ', ' + array[i].first_name).link(array[i].url);
         } else {
             name = (array[i].last_name + ', ' + array[i].first_name).link(array[i].url);
-        } // create statement to avoiding nulls before!!! the creation of the textnode => see next line.
+        }
         var tdName = document.createElement('td');
         tdName.innerHTML = name;
-
-        //        var textnodeName = document.createTextNode(name); // Create a text node
-        //        tdName.appendChild(textnodeName);
         tr.appendChild(tdName);
-        // Append/attach the text to <tr>
-        // Append/attach table-row to the tablebody
 
         var td = document.createElement('td'); // Create the cells
         var textnodeParty = document.createTextNode(array[i].party); // Create a text knooppunt
@@ -66,19 +110,17 @@ function buildTable(array) {
         tr.appendChild(td); // Append/attach cells to the rows
 
         var td = document.createElement('td'); // Create the cells
-        var textnodeSeniority = document.createTextNode(array[i].seniority); // Create a text knooppunt
+        var textnodeSeniority = document.createTextNode(array[i].seniority);
         td.appendChild(textnodeSeniority); // Append/attach the text to <td>
         tr.appendChild(td); // Append/attach cells to the rows
 
         var td = document.createElement('td'); // Create the cells
-        var textnodeVotes = document.createTextNode(array[i].votes_with_party_pct); // Create a text knooppunt
+        var textnodeVotes = document.createTextNode(array[i].votes_with_party_pct);
         td.appendChild(textnodeVotes); // Append/attach the text to <td>
         tr.appendChild(td); // Append/attach cells to the rows
         tblB.appendChild(tr);
 
     }
-
-
 
 }
 
@@ -89,7 +131,7 @@ function filteren() { //create filter
     for (var i = 0; i < allMembers.length; i++) {
 
         if (stateSelectorValue == allMembers[i].state || stateSelectorValue == 'all') {
-            if (allMembers[i].party == "R" && republican.checked == true ) {
+            if (allMembers[i].party == "R" && republican.checked == true) {
                 filteredArray.push(allMembers[i]);
             }
 
@@ -131,21 +173,3 @@ function addList(arr) {
 
     }
 }
-
-
-for (var i = 0; i < allMembers.length; i++) {
-    if (allMembers[i].state == "TN" && list.checked == true) {
-        filteredArray.push(allMembers[i]);
-    }
-
-
-    if (allMembers[i].party == "TH" && list.checked == true) {
-        filteredArray.push(allMembers[i]);
-    }
-
-
-    if (allMembers[i].party == "WI" && list.checked == true) {
-        filteredArray.push(allMembers[i]);
-    }
-}
-

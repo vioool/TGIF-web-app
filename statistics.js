@@ -1,31 +1,18 @@
-//getData()
-//
-//async function getData() {
-//
-//var data =  
-//    await fetch("https://dog.ceo/api/breeds/image/random", {
-////        method: 'GET',
-////        headers: {
-////            'X-API-key': '<your API key goes here>'
-////        }
-//    })
-//        .then(response => response.json())
-//        .then(json => json)
-//        .catch(err => console.error(err))
-//
-//    createImage(data.message)
-//}
-//
-//function createImage(picture) {
-//    var container = document.getElementById("attachImage");
-//    var image = document.createElement("IMG");
-//    image.setAttribute('src', picture)
-//    container.appendChild(image)
-//}
+getData()
 
+async function getData() {
 
-
-
+    var data =
+        await fetch("https://api.propublica.org/congress/v1/113/senate/members.json", {
+            method: 'GET',
+            headers: new Headers({
+                "X-API-Key": 'ynNlsKIHmCeXkYbQsaTMWD3sBKdGZ91Dpj0gh9Z'
+            })
+        })
+        .then(response => response.json())
+        .then(json => json)
+        .catch(err => console.error(err))
+    
 var table = document.getElementById("table1");
 var allMembers = data.results[0].members;
 //console.log(tableEngagedMost, tableLoyalLess)
@@ -56,7 +43,6 @@ var stats = {
 
 }
 
-
 var leastLoyal = [...allMembers.sort(function (a, b) { // make a new var where to store your sorted array
     return a.votes_with_party_pct - b.votes_with_party_pct; // sort your array by using key in data- ascending or descending
 })]
@@ -70,36 +56,43 @@ var mostEngaged = [...allMembers.sort(function (a, b) {
     return b.missed_votes_pct - a.missed_votes_pct;
 })]
 
-var leastEng = getTenPrct(leastEngaged, 'missed_votes_pct');
-var mostEng = getTenPrct(mostEngaged, 'missed_votes_pct');
-var leastLoy = getTenPrct(leastLoyal, 'votes_with_party_pct');
-var mostLoy = getTenPrct(mostLoyal, 'votes_with_party_pct');
+var tenLeastEng = getTenPrct(leastEngaged, 'missed_votes_pct');
+var tenMostEng = getTenPrct(mostEngaged, 'missed_votes_pct');
+var tenLeastLoy = getTenPrct(leastLoyal, 'votes_with_party_pct');
+var tenMostLoy = getTenPrct(mostLoyal, 'votes_with_party_pct');
 
 
 if (location.pathname == "/senate%20attendance%20statistics.html" || location.pathname == "/house%20attendance%20statistics.html") {
     var tableEngagedMost = document.getElementById("table2");
     var tableEngagedLess = document.getElementById("table3");
-    createTable(tableEngagedMost, mostEng, "missed_votes", "missed_votes_pct")
-    createTable(tableEngagedLess, leastEng, "missed_votes", "missed_votes_pct")
+    createTable(tableEngagedMost, tenMostEng, "missed_votes", "missed_votes_pct")
+    createTable(tableEngagedLess, tenLeastEng, "missed_votes", "missed_votes_pct")
 
 }
 if (location.pathname == "/senate_party-loyalty.html" || location.pathname == "/house_party-loyalty.html") {
     var tableLoyalMost = document.getElementById("table4");
     var tableLoyalLess = document.getElementById("table5");
-    createTable(tableLoyalMost, mostLoy, "total_votes", "votes_with_party_pct")
-    createTable(tableLoyalLess, leastLoy, "total_votes", "votes_with_party_pct" )
+    createTable(tableLoyalMost, tenMostLoy, "total_votes", "votes_with_party_pct")
+    createTable(tableLoyalLess, tenLeastLoy, "total_votes", "votes_with_party_pct" )
 
 }
 
-
-//kan overal in het document staan. Roept de resultaten op van de gelijknamige functie hieronder
-
-
 var dataFromList = returnAllStats(stats, allMembers).requests
+var myVar;
 
 
 generateTable(table, dataFromList);
 
+}
+
+function myFunction() {
+  myVar = setTimeout(showPage, 2000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
 
 function getTenPrct(members, key) { //(members, key can be enything like (x, y))
     var tenPerc = [];
@@ -120,8 +113,6 @@ function getTenPrct(members, key) { //(members, key can be enything like (x, y))
  
 
 }
-
-
 
 function returnAllStats(stats, allMembers) {
 
@@ -194,7 +185,7 @@ function createTable (table, array, votes, pct){
     for(var i = 0; i <array.length; i++){
         var row = document.createElement("tr")
         var nameCel = document.createElement("td");
-        nameCel.innerHTML = array[i].first_name + " " + array[i].last_name;
+        nameCel.innerHTML = (array[i].first_name + " " + array[i].last_name).link(array[i].url);
         
         var votesCel = document.createElement("td");
         votesCel.innerHTML = array[i][votes];

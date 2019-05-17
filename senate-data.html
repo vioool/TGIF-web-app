@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -10,90 +12,109 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body>
-    <div class="wrapper">
-        <header class="header">
-            <a class="nav-link active" href="home.html"><img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmiJomshqE5fCQU29kPDq9xhUtAvMga3jlWiXtjjXNuRqijeaE6w" alt="logo TGIF"></a>
-            <div class="mail"><a href="mailto:info@tgif.net">
-                    <p><span class="glyphicon glyphicon-envelope"></span> info@tgif.net</p>
-                </a>
-            </div>
-        </header>
+<body onload="myFunction()" style="margin:0;">
 
-        <nav>
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" href="home.html">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Congress 113</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="senate-data.html">Senate</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="house-data.html">House</a>
+    <div id="loader"></div>
+
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+
+        <div class="wrapper">
+            <header class="header">
+                <a class="nav-link active" href="home.html"><img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmiJomshqE5fCQU29kPDq9xhUtAvMga3jlWiXtjjXNuRqijeaE6w" alt="logo TGIF"></a>
+                <div class="mail"><a href="mailto:info@tgif.net">
+                        <p><span class="glyphicon glyphicon-envelope"></span> info@tgif.net</p>
+                    </a>
+                </div>
+            </header>
+
+            <nav>
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Congress 113</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="senate-data.html">Senate</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="house-data.html">House</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Attendance</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="senate%20attendance%20statistics.html">Senate</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="house%20attendance%20statistics.html">House</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Party Loyalty</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="senate_house-party-loyalty.html">Senate</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="house_party-loyalty.html">House</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <article class="main">
+                <h2>Senators</h2>
+                <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+
+                <div class="filterbar">
+                    <div class="check">
+                        <label class="checkbox-inline" for="inlineCheckbox1">Filter by Party </label>
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" checked>
+                        <label class="checkbox-inline" for="inlineCheckbox1"> Republican</label>
+
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" checked>
+                        <label class="checkbox-inline" for="inlineCheckbox2"> Democrat</label>
+
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" checked>
+                        <label class="checkbox-inline" for="inlineCheckbox3"> Independent</label>
                     </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Attendance</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="senate%20attendance%20statistics.html">Senate</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="house%20attendance%20statistics.html">House</a>
+
+                    <div class="dropdown">
+                        <select id='states-selector'>
+                            <option value="all">-- All States --</option>
+                        </select>
                     </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Party Loyalty</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="senate_house-party-loyalty.html">Senate</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="house_party-loyalty.html">House</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-
-        <article class="main">
-            <h2>Senators</h2>
-            <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
-
-            <div class="filterbar">
-                <div class="check">
-                    <label class="form-check-label" for="inlineCheckbox1">Filter by Party </label>
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" checked>
-                    <label class="form-check-label" for="inlineCheckbox1"> Republican</label>
-
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" checked>
-                    <label class="form-check-label" for="inlineCheckbox2"> Democrat</label>
-
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" checked>
-                    <label class="form-check-label" for="inlineCheckbox3"> Independent</label>
                 </div>
 
-                <div class="dropdown">
-                    <select id='states-selector'>
-                        <option value="all">--All--</option>
-                    </select>
-                </div>
-            </div>
-
-<!--            <pre id="senate-data"></pre>-->
-
-            <table class="table table-striped" >
-                <thead>
-                    <tr>
-                        <th>Senator</th>
-                        <th>Party Affiliation</th>
-                        <th>State</th>
-                        <th>Years in Office </th>
-                        <th>% Votes with Party</th>
+                <!--
+            <div class="container" id="app">
+                <tbody>
+                    <tr v-for="(value, key) in senators">
+                        <td>{{value.first_name}} {{value.middle_name}} {{value.last_name}}</td>
+                        <td>{{value.party}}</td>
+                        <td>{{value.state}}</td>
+                        <td>{{value.seniority}}</td>
+                        <td>{{value.votes_with_party_pct}}</td>
                     </tr>
-                </thead>
-                <tbody id="table"></tbody>
-            </table>
-            <a href="#0" id="link"></a>
-        </article>
-        <footer class="footer">© 2019 Copyright: All Rights Reserved</footer>
+                </tbody>
+            </div>
+-->
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Senator</th>
+                            <th>Party Affiliation</th>
+                            <th>State</th>
+                            <th>Years in Office </th>
+                            <th>% Votes with Party</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table"></tbody>
+                </table>
+                <a href="#0" id="link"></a>
+            </article>
+            <footer class="footer">© 2019 Copyright: All Rights Reserved</footer>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <!--    <script src="pro-congress-113-senate.js"></script>-->
+        <script src="main.js"></script>
     </div>
-    <script src="pro-congress-113-senate.js"></script>
-    <script src="main.js"></script>
 </body></html>
