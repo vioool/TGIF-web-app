@@ -105,7 +105,7 @@ h3 {
 
 .logo {
     display: flex;
-    width: 180px;
+    width: 250px;
 }
 
 .mail {
@@ -126,8 +126,8 @@ td {
 .image {
     display: flex;
     margin-left: 20px;
-    width: 30%;
-
+    width: 40%;
+    border-radius: 4px;
 }
 
 #loader {

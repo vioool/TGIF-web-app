@@ -40,36 +40,27 @@ async function getData() {
     
     var filteredArr = []; //collect all filtered value in an array
     var myVar;
-//
-//    var app = new Vue({
-//        el: '#app',
-//        data: {
-//            senators: []
-//        }
-//    });
-//    
-//    app.senateData = Object.assign(allMembers);
         
 
     buildTable(allMembers)
     removeDuplicates()
     addList(filteredArr)
 
-    for (var i = 0; i < allMembers.length; i++) {
-        if (allMembers[i].state == "TN" && list.checked == true) {
-            filteredArray.push(allMembers[i]);
-        }
-
-
-        if (allMembers[i].party == "TH" && list.checked == true) {
-            filteredArray.push(allMembers[i]);
-        }
-
-
-        if (allMembers[i].party == "WI" && list.checked == true) {
-            filteredArray.push(allMembers[i]);
-        }
-    }
+//    for (var i = 0; i < allMembers.length; i++) {
+//        if (allMembers[i].state == "TN" && list.checked == true) {
+//            filteredArray.push(allMembers[i]);
+//        }
+//
+//
+//        if (allMembers[i].party == "TH" && list.checked == true) {
+//            filteredArray.push(allMembers[i]);
+//        }
+//
+//
+//        if (allMembers[i].party == "WI" && list.checked == true) {
+//            filteredArray.push(allMembers[i]);
+//        }
+//    }
 
 }
 
@@ -116,6 +107,7 @@ function buildTable(array) {
 
         var td = document.createElement('td'); // Create the cells
         var textnodeVotes = document.createTextNode(array[i].votes_with_party_pct);
+        
         td.appendChild(textnodeVotes); // Append/attach the text to <td>
         tr.appendChild(td); // Append/attach cells to the rows
         tblB.appendChild(tr);

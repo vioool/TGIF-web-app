@@ -14,7 +14,7 @@ async function getData() {
         .catch(err => console.error(err))
     
 var table = document.getElementById("table1");
-var allMembers = data.results[0].members;
+var allMembers = data.results[0].members; 
 //console.log(tableEngagedMost, tableLoyalLess)
 
 var stats = {
