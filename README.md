@@ -13,5 +13,6 @@ I loved writing functions and get things literaly into motion.
 
 WHAT I LIKED MOST: • To see myself grow during the process of building tables in JavaScript and using different calculations 
 to present the right data.
+• Finding out I love to code!
 • To be able to work with dynamic third party. 
 • Using Bootstrap and give the application an appealing look at once.
